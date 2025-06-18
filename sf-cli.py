@@ -243,11 +243,15 @@ def get_organization():
         print(f"Error obteniendo información: {str(e)}")
 
 def save_to_file(content, filename):
+    output_dir = Path("outputs")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    file_path = output_dir / filename
     try:
-        with open(filename, 'w') as f:
+        with open(file_path, 'w') as f:
             f.write(content)
         print(f"✓ Archivo guardado: {filename}")
-        print(f"✓ Ubicación: {os.path.abspath(filename)}")
+        print(f"✓ Ubicación: {os.path.abspath(file_path)}")
     except Exception as e:
         print(f"Error guardando archivo: {str(e)}")
 
