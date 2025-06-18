@@ -62,7 +62,7 @@ def print_menu():
 
 def login():
     print("=== Login a Salesforce ===")
-    instance_type = input("Tipo de instancia (prod/sandbox): ").lower()
+    instance_type = input("Tipo de instancia (prod/test): ").lower()
     username = input("Username: ")
     password = input("Password: ")
     security_token = input("Security Token: ")
@@ -73,7 +73,7 @@ def login():
             username=username,
             password=password,
             security_token=security_token,
-            domain='test' if instance_type == 'sandbox' else 'login'
+            domain='test' if instance_type == 'test' else 'login'
         )
         
         # Guardar sesión
@@ -122,6 +122,96 @@ def switch_session():
     else:
         print("Sesión no encontrada")
 
+def reset_password():
+    username = input("Username: ")
+    new_password = input("Nueva contraseña: ")
+    soql_code = f"""
+User userToReset = [SELECT Id FROM User WHERE username='{username}' LIMIT 1];
+System.setPassword(userToReset.Id, '{new_password}');
+System.debug('Contraseña restablecida para: {username}');"""
+ 
+    print("\\nCódigo SOQL generado:")
+    print("═"*50)
+    print(soql_code)
+    print("═"*50)
+    save_to_file(soql_code, "password_reset.soql")
+
+def delete_record():
+    object_type = input("Tipo de objeto (Lead/Account/Opportunity): ")
+    record_id = input("ID del registro: ")
+
+    soql_code = f"""
+{object_type} recordToDelete = [SELECT Id FROM {object_type} WHERE Id = '{record_id}'];
+delete recordToDelete;
+System.debug('{object_type} eliminado: {record_id}');"""
+
+    print("\\nCódigo SOQL generado:")
+    print("═"*50)
+    print(soql_code)
+    print("═"*50)
+    save_to_file(soql_code, "delete_record.soql")
+
+# Queda pendiente
+def cascade_delete():
+    print("queda pendiente")
+
+def replace_advisor():
+    old_id = input("ID antiguo advisor: ")
+    new_id = input("ID nuevo advisor: ")
+    limit = input("Límite registros (default 200): ") or "200"
+    date_range = input("Rango fechas (YYYY-MM-DD to YYYY-MM-DD): ")
+
+    soql_code = f"""
+String ANTIGUO_ADVISOR = '{old_id}';
+String NUEVO_ADVISOR = '{new_id}';
+Integer REGISTROS_LIMITE = {limit};
+
+// Obtener oportunidades
+List<Opportunity> oportunidades = [
+    SELECT Id, Advisor_Pre_Arrival__c
+    FROM Opportunity
+    WHERE Arrival__c >= {date_range.split(' to ')[0]}
+    AND Arrival__c <= {date_range.split(' to ')[1]}
+    AND Advisor_Pre_Arrival__c = :ANTIGUO_ADVISOR
+    LIMIT :REGISTROS_LIMITE
+];
+
+// Realizar reemplazos
+for(Opportunity opp : oportunidades) {{
+    opp.Advisor_Pre_Arrival__c = NUEVO_ADVISOR;
+}}
+
+update oportunidades;"""
+
+    print("\\nCódigo SOQL generado:")
+    print("═"*50)
+    print(soql_code)
+    print("═"*50)
+    save_to_file(soql_code, "replace_advisor.soql")
+
+def custom_soql():
+    print("\\nTipos de consulta disponibles:")
+    print("1. Leads por rango de fechas")
+    print("2. Oportunidades por advisor")
+    print("3. Personalizado")
+    choice = input("Selección: ")
+
+    if choice == "1":
+        start_date = input("Fecha inicio (YYYY-MM-DD): ")
+        end_date = input("Fecha fin (YYYY-MM-DD): ")
+        soql = f"SELECT Id, Email, Email2__c FROM Lead WHERE CreatedDate >= {start_date}T00:00:00Z AND CreatedDate <= {end_date}T23:59:59Z"
+    elif choice == "2":
+        advisor_id = input("ID del advisor: ")
+        soql = f"SELECT Id, Name, StageName FROM Opportunity WHERE Advisor_Pre_Arrival__c = '{advisor_id}'"
+    else:
+        soql = input("Ingresa tu consulta SOQL: ")
+
+    print("\\nConsulta generada:")
+    print("═"*50)
+    print(soql)
+    print("═"*50)
+    save_to_file(soql, "custom_query.soql")
+
 def open_browser():
     if not cli.current_session:
         print("No hay sesión activa")
@@ -152,6 +242,15 @@ def get_organization():
     except Exception as e:
         print(f"Error obteniendo información: {str(e)}")
 
+def save_to_file(content, filename):
+    try:
+        with open(filename, 'w') as f:
+            f.write(content)
+        print(f"✓ Archivo guardado: {filename}")
+        print(f"✓ Ubicación: {os.path.abspath(filename)}")
+    except Exception as e:
+        print(f"Error guardando archivo: {str(e)}")
+
 def manage_components():
     print("\n=== Gestión de Componentes ===")
     print("1. Listar componentes")
@@ -163,7 +262,7 @@ def manage_components():
 
 def push_changes():
     print("\n=== Push de Cambios ===")
-    print("1. Push a sandbox")
+    print("1. Push a test")
     print("2. Push a producción")
     
     choice = input("Selección: ")
