@@ -1,0 +1,156 @@
+- Importante (First-time Installation) (CLI Update)
+    
+    ```bash
+    # Despues de Instalar el SF - CLI
+    ## Actualizar a la última versión
+    sf update
+    ```
+    
+- Autenticación
+    
+    ```bash
+    # Auth en Prod
+    ## New
+    sf org login web --alias my-org
+    ## Legacy
+    sfdx auth:web:login -a production-org -r https://login.salesforce
+    
+    # Auth en Sandbox
+    ## New
+    sf org login web --alias sandbox-org -r https://test.salesforce.com
+    ## Legacy
+    sfdx auth:web:login -a sandbox-org -r https://test.salesforce.com
+    ```
+    
+    ![image.png](attachment:12fee097-7b36-4c56-b909-f77d59c85537:image.png)
+    
+- Despliegue
+    
+    ```bash
+    # Forzar despliegue a una aplicacion o componente
+    ## Despliega a la "App" o el "Componente" a la organizacion activa
+    sf deploy metadata --source-dir App|Componente
+    
+    ## Despliega el proyecto, asegurarse de que 'isExposed=true"
+    sf project deploy start -d App
+    
+    ## Desplegar funciones en la organizacion especificada
+    sf deploy functions --connected-org myDevOrg
+    ```
+    
+- Identidad
+    
+    ```bash
+    # Confirmar con que cuenta de Salesforce esta la autentificación
+    sf whoami
+    ```
+    
+- Organizacion
+    
+    ```bash
+    # Comprobar organizaciones
+    ## Ver lista de organizaciones
+    sf org list
+    ## Setear organizacion como default
+    sf config set --global target-org=my-org
+    ```
+    
+- Proyecto
+    
+    ```bash
+    # Crear nuevo proyecto
+    sfdx force:project:create -n MiProyectoLWC -d ./dev -t standard
+    
+    # Navegación y configuración
+    cd MiProyectoLWC
+    sf config set target-org=miOrg
+    ## Global
+    sf config set --global taget-org=miOrg
+    ```
+    
+- Componentes
+    
+    ```bash
+    # Comando CLI para crear componente
+    sfdx force:lightning:component:create \\
+        --type lwc \\
+        --componentname miComponente \\
+        --outputdir force-app/main/default/lwc
+    ```
+    
+- Plugins
+    
+    ```bash
+    # Comprobar plugins instalados en el CLI
+    ## New
+    sf plugins
+    ## Legacy 
+    sfdx plugins
+    
+    ## Instalacion de Plugins
+    sf plugins install @salesforce/plugin-source
+    sf plugins install @salesforce/plugin-project
+    ```
+    
+- Funciones
+    
+    ```bash
+    # Iniciar sesión para funciones (Functions)
+    ## Autenticarte para trabajar con Salesforce Functions.
+    sf login functions
+    
+    sf logout
+    sf deploy functions --connected-org myDevOrg
+    ```
+    
+- Log
+    
+    ```bash
+    # Ver logs de despliegues
+    sf deploy -p App -u myDevOrg --verbose
+    ```
+    
+- Ayuda
+    
+    ```bash
+    # Obtener ayuda
+    sf help deploy
+    ```
+    
+- Apex
+    
+    ```bash
+    # Debuggear en Apex
+    ## 1
+    Toggle Checkpoint
+    ## 2
+    Update Checkpoint
+    ## 3 
+    Turn On Apex Debugger
+    ## 4 
+    Run Apex Test
+    ## 5
+    Apex Debug Log
+    ## 6 Probar clase de apex
+    '''apex
+    sf apex run test --classnames AccountServiceTest --result-format human
+    ## Alternative
+    sfdx force:apex:test:run -n AccountServiceTest --wait 10 --resultformat human
+    '''
+    
+    ### Ver logs en path
+    .sfdx/tools/debug/logs
+    
+    ### New Suite Class (Test Classes)
+    ```
+
+- NPM troubleshoot
+
+    ```powershell
+    ### Problemas de npm
+    npm cache clean --force
+    npm install
+    ## Actualizar SF CLI y NPM
+    sf update
+    npm install -g npm@latest
+    ```

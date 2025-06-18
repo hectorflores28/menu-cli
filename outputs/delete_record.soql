@@ -1,0 +1,4 @@
+
+lead recordToDelete = [SELECT Id FROM lead WHERE Id = '1'];
+delete recordToDelete;
+System.debug('lead eliminado: 1');

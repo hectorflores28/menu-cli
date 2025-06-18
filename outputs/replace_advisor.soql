@@ -1,0 +1,21 @@
+
+String ANTIGUO_ADVISOR = '1';
+String NUEVO_ADVISOR = '2';
+Integer REGISTROS_LIMITE = 10;
+
+// Obtener oportunidades
+List<Opportunity> oportunidades = [
+    SELECT Id, Advisor_Pre_Arrival__c
+    FROM Opportunity
+    WHERE Arrival__c >= 20240101
+    AND Arrival__c <= 20250101
+    AND Advisor_Pre_Arrival__c = :ANTIGUO_ADVISOR
+    LIMIT :REGISTROS_LIMITE
+];
+
+// Realizar reemplazos
+for(Opportunity opp : oportunidades) {
+    opp.Advisor_Pre_Arrival__c = NUEVO_ADVISOR;
+}
+
+update oportunidades;
