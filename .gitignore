@@ -29,7 +29,6 @@ config.json
 # Directorios de datos
 templates/
 output/
-assets/
 
 # IDEs
 .idea/
