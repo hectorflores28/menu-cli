@@ -1,69 +1,134 @@
-Notas:
+# Salesforce CLI - Notas de Desarrollo
 
-1. **Gestión de Metadatos**:
-   - Exportar/Importar metadatos
-   - Listar objetos personalizados
-   - Ver campos de objetos
-   - Crear/Modificar campos
+## Funcionalidades Actuales
 
-2. **Gestión de Usuarios**:
-   - Crear usuarios
-   - Asignar perfiles
-   - Gestionar permisos
-   - Ver roles y jerarquías
+### Gestión de Sesiones
+- Login/Logout automático
+- Múltiples sesiones (prod/sandbox)
+- Persistencia de sesiones
+- Cambio entre sesiones
 
-3. **Gestión de Datos**:
-   - Exportar datos a CSV
-   - Importar datos desde CSV
-   - Validación de datos
-   - Limpieza de datos
+### Operaciones Básicas
+- Resetear contraseñas
+- Eliminar registros
+- Eliminación en cascada
+- Reemplazar Advisor
+- Ejecutar SOQL personalizado
 
-4. **Desarrollo**:
-   - Crear clases Apex
-   - Crear triggers
-   - Crear páginas Visualforce
-   - Crear componentes Lightning
+### Organización
+- Ver información de la organización
+- Gestionar componentes
+- Push de cambios
+- Integración con navegador
 
-5. **Monitoreo**:
-   - Ver logs de debug
-   - Monitorear jobs
-   - Ver límites de la organización
-   - Ver errores en tiempo real
+## Ideas Futuras
 
-6. **Seguridad**:
-   - Gestionar IP ranges
-   - Ver sesiones activas
-   - Gestionar tokens de API
-   - Auditoría de cambios
+### Gestión de Metadatos
+- Exportar/Importar metadatos
+- Listar objetos personalizados
+- Ver campos de objetos
+- Crear/Modificar campos
+- Gestión de layouts
+- Configuración de validaciones
 
-7. **Integración**:
-   - Configurar webhooks
-   - Gestionar endpoints
-   - Ver llamadas API
-   - Monitorear integraciones
+### Gestión de Usuarios
+- Crear usuarios
+- Asignar perfiles
+- Gestionar permisos
+- Ver roles y jerarquías
+- Gestión de grupos
+- Configuración de seguridad
 
-8. **Mejoras en la UI**:
-   - Colores en la terminal
-   - Barra de progreso
-   - Tablas formateadas
-   - Menús contextuales
+### Gestión de Datos
+- Exportar datos a CSV
+- Importar datos desde CSV
+- Validación de datos
+- Limpieza de datos
+- Migración de datos
+- Backup automático
 
-9. **Automatización**:
-   - Programar tareas
-   - Crear flujos
-   - Gestionar procesos
-   - Automatizar pruebas
+### Desarrollo
+- Crear clases Apex
+- Crear triggers
+- Crear páginas Visualforce
+- Crear componentes Lightning
+- Gestión de paquetes
+- Control de versiones
 
-10. **Reportes**:
-    - Crear reportes
-    - Exportar dashboards
-    - Programar reportes
-    - Análisis de datos
+### Monitoreo
+- Ver logs de debug
+- Monitorear jobs
+- Ver límites de la organización
+- Ver errores en tiempo real
+- Análisis de rendimiento
+- Alertas automáticas
 
-¿Te gustaría que implemente alguna de estas funcionalidades específicas? También podemos:
+### Seguridad
+- Gestionar IP ranges
+- Ver sesiones activas
+- Gestionar tokens de API
+- Auditoría de cambios
+- Encriptación de datos
+- Control de acceso
 
-1. Mejorar el manejo de errores
-2. Agregar logs detallados
-3. Implementar un sistema de caché
-4. Agregar más validaciones
-5. Mejorar la documentación del código
+### Integración
+- Configurar webhooks
+- Gestionar endpoints
+- Ver llamadas API
+- Monitorear integraciones
+- Sincronización de datos
+- Gestión de errores
+
+### Mejoras en la UI
+- Colores en la terminal
+- Barra de progreso
+- Tablas formateadas
+- Menús contextuales
+- Autocompletado
+- Ayuda integrada
+
+### Automatización
+- Programar tareas
+- Crear flujos
+- Gestionar procesos
+- Automatizar pruebas
+- Programación de jobs
+- Notificaciones
+
+### Reportes
+- Crear reportes
+- Exportar dashboards
+- Programar reportes
+- Análisis de datos
+- Visualización
+- Exportación automática
+
+## Notas de Desarrollo
+
+### Prioridades
+1. Implementar gestión de metadatos
+2. Mejorar gestión de usuarios
+3. Agregar monitoreo básico
+4. Implementar seguridad
+5. Desarrollar automatización
+
+### Consideraciones Técnicas
+- Usar simple-salesforce para API
+- Implementar manejo de errores
+- Considerar rate limits
+- Usar asyncio para operaciones largas
+- Implementar caché
+
+### Mejoras de UX
+- Interfaz más intuitiva
+- Mejor manejo de errores
+- Más feedback visual
+- Documentación integrada
+- Tutoriales interactivos
+
+### Documentación
+- Documentar todas las funciones
+- Crear ejemplos de uso
+- Mantener changelog
+- Documentar API
+- Crear guías de usuario
