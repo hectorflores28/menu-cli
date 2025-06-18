@@ -1,9 +1,6 @@
 import os
-import datetime
-import subprocess
 import webbrowser
 import json
-import requests
 from simple_salesforce import Salesforce
 from pathlib import Path
 
@@ -55,12 +52,11 @@ def print_menu():
     print("║ 6. Eliminación en cascada        ║")
     print("║ 7. Reemplazar Advisor            ║")
     print("║ 8. Ejecutar SOQL personalizado   ║")
-    print("║ 9. Procesar reportes Excel       ║")
-    print("║ 10. Ver organización             ║")
-    print("║ 11. Gestionar componentes        ║")
-    print("║ 12. Push cambios                 ║")
-    print("║ 13. Abrir navegador              ║")
-    print("║ 14. Salir                        ║")
+    print("║ 9. Ver organización              ║")
+    print("║ 10. Gestionar componentes        ║")
+    print("║ 11. Push cambios                 ║")
+    print("║ 12. Abrir navegador              ║")
+    print("║ 13. Salir                        ║")
     print("╚══════════════════════════════════╝")
     print("""\n""")
 
@@ -189,12 +185,11 @@ def main():
         elif choice == "6": cascade_delete()
         elif choice == "7": replace_advisor()
         elif choice == "8": custom_soql()
-        elif choice == "9": excel_operations()
-        elif choice == "10": get_organization()
-        elif choice == "11": manage_components()
-        elif choice == "12": push_changes()
-        elif choice == "13": open_browser()
-        elif choice == "14":
+        elif choice == "9": get_organization()
+        elif choice == "10": manage_components()
+        elif choice == "11": push_changes()
+        elif choice == "12": open_browser()
+        elif choice == "13":
             print("¡Hasta pronto! ✨")
             break
         else:
