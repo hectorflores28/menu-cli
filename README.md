@@ -1,5 +1,13 @@
 # Menu-CLI
 
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Salesforce](https://img.shields.io/badge/Salesforce-API-orange.svg)
+![Excel](https://img.shields.io/badge/Excel-Data_Analysis-green.svg)
+![Pandas](https://img.shields.io/badge/Pandas-2.0+-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
+![CLI](https://img.shields.io/badge/CLI-Tools-purple.svg)
+
 Colección de herramientas CLI (Command Line Interface) desarrolladas en Python para facilitar tareas administrativas y de desarrollo.
 
 ## Herramientas Disponibles
